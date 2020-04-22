@@ -10,6 +10,7 @@ Page({
    */
   data: {
     isLogin: false,
+    version: "0.0.1",
     account: 0
   },
   login() {
