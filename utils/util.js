@@ -14,6 +14,16 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const isEmpty = obj => {
+  return obj === "" || obj === null || typeof (obj) === "undefined";
+}
+
+const isLogin = () => {
+  return !isEmpty(wx.getStorageSync("openid"))
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime,
+  isEmpty,
+  isLogin
 }
