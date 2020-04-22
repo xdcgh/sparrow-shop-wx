@@ -18,14 +18,14 @@
     </view>
 
     <view class="container">
-        <navigator url="/pages/select-address/index">
+        <navigator url="/pages/address/select/index">
             <view class="menu-item">
                 <view class="l">收货地址</view>
                 <image class="next" src="/images/icon/next.png"></image>
             </view>
         </navigator>
         <view class="line"></view>
-        <navigator url="/pages/coupons/index">
+        <navigator url="/pages/recharge/recharge">
             <view class="menu-item">
                 <view class="l">充值中心</view>
                 <image class="next" src="/images/icon/next.png"></image>
