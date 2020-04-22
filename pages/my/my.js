@@ -1,6 +1,6 @@
 // pages/my/my.js
 const app = getApp()
-const {userInfo} = app.globalData
+
 const util = require('../../utils/util.js')
 
 Page({
@@ -56,9 +56,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const {userInfo} = app.globalData
+
     this.setData({
       isLogin: util.isLogin(),
-      account: userInfo.account
+      account: userInfo.account / 100
     })
   },
 
