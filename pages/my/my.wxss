@@ -53,3 +53,9 @@
     font-size: 24rpx;
     padding-left: 150rpx
 }
+
+.loginButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
