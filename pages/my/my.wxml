@@ -33,21 +33,17 @@
         </navigator>
 
         <view class="space"></view>
-        <navigator url="/pages/sign/index">
-            <view class="menu-item">
-                <view class="l">版权说明</view>
-                <image class="next" src="/images/icon/next.png"></image>
-            </view>
-        </navigator>
+        <view class="menu-item" bindtap="rightOfState">
+            <view class="l">版权说明</view>
+            <image class="next" src="/images/icon/next.png"></image>
+        </view>
         <view class="line"></view>
-        <navigator url="/pages/score-excharge/index">
-            <view class="menu-item">
-                <view class="l">更多功能</view>
-                <image class="next" src="/images/icon/next.png"></image>
-            </view>
-        </navigator>
+        <view class="menu-item" bindtap="moreFunction">
+            <view class="l">更多功能</view>
+            <image class="next" src="/images/icon/next.png"></image>
+        </view>
         <view class="line"></view>
-        <view class="menu-item" bindtap="aboutUs">
+        <view class="menu-item" bindtap="aboutAuthor">
             <view class="l">关于作者</view>
             <image class="next" src="/images/icon/next.png"></image>
         </view>

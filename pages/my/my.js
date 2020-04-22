@@ -16,6 +16,27 @@ Page({
   login() {
     wx.navigateTo({url: "/pages/login/login"})
   },
+  aboutAuthor() {
+    wx.showModal({
+      title: '关于作者',
+      content: '我是20届软件工程的毕业生，许达成。此系统是我的毕业设计，希望大家使用愉快！',
+      showCancel: false
+    })
+  },
+  rightOfState() {
+    wx.showModal({
+      title: '版权说明',
+      content: '此系统不做任何商业用途，仅学习使用',
+      showCancel: false
+    })
+  },
+  moreFunction() {
+    wx.showModal({
+      title: '更多功能',
+      content: '在抓紧开发中，敬请期待！',
+      showCancel: false
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
