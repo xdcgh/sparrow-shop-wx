@@ -1,0 +1,55 @@
+.meContainer {
+    background: #F6F6F6;
+    min-height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 170rpx;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    color: #FE996F;
+    font-size: 22rpx;
+    padding: 0 45rpx;
+    margin-bottom: 23rpx;
+}
+
+.header .avatar {
+    width: 88rpx;
+    height: 88rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20rpx;
+}
+
+.header .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding-left: 10rpx;
+}
+
+.header .details .name {
+    color: black;
+    font-size: 32rpx;
+    padding-bottom: 10rpx;
+}
+
+.header .details .account {
+    font-size: 24rpx;
+}
+
+.qr::after {
+    border: none;
+}
+
+.qr {
+    background: transparent;
+    color: #FE996F;
+    font-size: 24rpx;
+    padding-left: 150rpx
+}

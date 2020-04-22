@@ -22,7 +22,7 @@ Page({
 
       wx.reLaunch({
         // todo 是否要根据来的页面，来返回到上一层页面
-        url: "/pages/index/index"
+        url: "/pages/my/my"
       })
     })
   }
