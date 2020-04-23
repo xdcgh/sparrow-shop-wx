@@ -1,14 +1,14 @@
 const app = getApp()
-const {host, t_app_id, t_app_secret} = app.globalData
+const {host} = app.globalData
 
 const _http = (method, url, data) => {
-  let header = {
-    "t-app-id": t_app_id,
-    "t-app-secret": t_app_secret
-  }
+  let header;
 
-  if (wx.getStorageSync('X-token')) {
-    header["Authorization"] = `Bearer ${wx.getStorageSync('X-token')}`
+  if (wx.getStorageSync('sessionId')) {
+    header = {
+      'content-type': 'application/x-www-form-urlencoded',
+      'cookie':wx.getStorageSync("sessionId")
+    };
   }
 
   return new Promise((resolve, reject) => {

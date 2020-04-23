@@ -19,6 +19,7 @@ Page({
     }).then(response => {
       wx.setStorageSync('me', JSON.parse(response.data))
       wx.setStorageSync('openid', JSON.parse(response.data)["openid"])
+      wx.setStorageSync('sessionId', response.header["Set-Cookie"])
 
       wx.navigateBack();
     })

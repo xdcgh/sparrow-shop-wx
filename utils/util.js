@@ -22,8 +22,19 @@ const isLogin = () => {
   return !isEmpty(wx.getStorageSync("openid"))
 }
 
+const getAccount = () => {
+  let userInfo = wx.getStorageSync('me')
+  return userInfo.account / 100
+}
+
+const getOpenid = () => {
+  return wx.getStorageSync('openid')
+}
+
 module.exports = {
   formatTime,
   isEmpty,
-  isLogin
+  isLogin,
+  getAccount,
+  getOpenid
 }
