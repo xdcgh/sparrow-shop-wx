@@ -1,5 +1,6 @@
 // pages/my/my.js
 const util = require('../../utils/util.js')
+const {http} = require('../../utils/http')
 
 Page({
 
@@ -29,11 +30,12 @@ Page({
     })
   },
   moreFunction() {
-    wx.showModal({
-      title: '更多功能',
-      content: '在抓紧开发中，敬请期待！',
-      showCancel: false
-    })
+    // wx.showModal({
+    //   title: '更多功能',
+    //   content: '在抓紧开发中，敬请期待！',
+    //   showCancel: false
+    // })
+    http.post("/any")
   },
 
   /**

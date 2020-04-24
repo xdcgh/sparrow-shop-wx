@@ -25,7 +25,7 @@ const _http = (method, url, data) => {
         if (statusCode >= 400) {
           if (statusCode === 401) {
             // 未登录，重定向到登录页面
-            wx.redirectTo({url: "/pages/login/login"})
+            wx.navigateTo({url: "/pages/login/login"})
           }
           reject({statusCode, response})
         } else {
