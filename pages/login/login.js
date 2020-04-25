@@ -12,7 +12,7 @@ Page({
     })
   },
   onGetCode({code,nickName,avatarUrl}) {
-    http.post('/api/wx/login', {
+    http.post('/login', {
       code,
       nickName,
       avatar: avatarUrl

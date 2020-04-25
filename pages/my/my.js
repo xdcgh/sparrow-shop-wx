@@ -35,7 +35,7 @@ Page({
     //   content: '在抓紧开发中，敬请期待！',
     //   showCancel: false
     // })
-    http.post("/any")
+    http.post("/status")
   },
 
   /**

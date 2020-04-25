@@ -6,7 +6,7 @@ const _http = (method, url, data) => {
 
   if (wx.getStorageSync('sessionId')) {
     header = {
-      'content-type': 'application/x-www-form-urlencoded',
+      'content-type': 'application/json',
       'cookie':wx.getStorageSync("sessionId")
     };
   }
