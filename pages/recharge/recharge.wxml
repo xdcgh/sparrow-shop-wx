@@ -1,2 +1,17 @@
-<!--pages/recharge/recharge.wxml-->
-<text>pages/recharge/recharge.wxml</text>
+<view class="recharge">
+    <view class="account">
+        <view>
+            <text class="number">{{account}}</text>
+            <text>元</text>
+        </view>
+    </view>
+    <view class="nameWrapper">
+        <input name="amount" class="input" type="number"
+               maxlength="6" placeholder="输入金额" placeholder-class="placeholder"
+               bindinput="watchAmount"/>
+    </view>
+
+    <button class="rechargeButton" bindtap="toRecharge">
+        立即充值
+    </button>
+</view>
