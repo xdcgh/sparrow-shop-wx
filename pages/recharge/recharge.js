@@ -24,7 +24,7 @@ Page({
         duration: 2000
       })
 
-      return;
+      return
     }
 
     http.post(`/recharge`, {
@@ -32,7 +32,17 @@ Page({
     }).then(response => {
       wx.setStorageSync('me', JSON.parse(response.data).data)
 
-      wx.navigateBack()
+      wx.showToast({
+        title: '充值成功',
+        icon: 'success',
+        duration: 2000,
+        complete: () => {
+          setTimeout(function() {
+            wx.navigateBack()
+          }, 2000)
+        }
+      })
+
     })
   },
 
