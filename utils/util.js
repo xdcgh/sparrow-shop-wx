@@ -19,7 +19,7 @@ const isEmpty = obj => {
 }
 
 const isLogin = () => {
-  return !isEmpty(wx.getStorageSync("openid"))
+  return !isEmpty(wx.getStorageSync("me"))
 }
 
 const getAccount = () => {
