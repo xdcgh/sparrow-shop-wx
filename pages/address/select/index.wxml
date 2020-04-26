@@ -1,2 +1,23 @@
-<!--pages/address/select/index.wxml-->
-<text>pages/address/select/index.wxml</text>
+<view class="container">
+    <view class="address-list">
+        <view class="a-address" wx:for-items="{{addressList}}" wx:key="index">
+            <view class="left-text {{item.isDefault === 'yes'? 'active':''}}" bindtap="selectTap" data-id="{{item.id}}">
+                <view class="name-tel">
+                    {{item.name}} {{item.phone}}
+                </view>
+                <view class="address-box">
+                    {{item.detail}}
+                </view>
+            </view>
+            <wxc-icon class="right-edit" type='edit' size='35' color='#999999' bindtap="editAddress"
+                      data-id="{{item.id}}"></wxc-icon>
+            <!--<view class="right-edit" bindtap="editAddess" data-id="{{item.id}}"></view>-->
+        </view>
+    </view>
+    <view class="bottom-box">
+        <view class='arrow-right'>
+            <view class="add-btn" bindtap="addAddress">新增收货地址</view>
+        </view>
+    </view>
+
+</view>
