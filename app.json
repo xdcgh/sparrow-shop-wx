@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/my/my",
+    "pages/address/add/index",
     "pages/address/select/index",
+    "pages/my/my",
     "pages/recharge/recharge",
     "pages/order/order",
     "pages/login/login",
@@ -40,6 +41,10 @@
       }
     ]
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "/dist/packages/@vant/weapp/dist/button/index",
+    "van-popup": "/dist/packages/@vant/weapp/dist/popup/index",
+    "van-icon": "/dist/packages/@vant/weapp/dist/icon/index"
+  }
 }
