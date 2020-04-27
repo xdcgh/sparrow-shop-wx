@@ -17,8 +17,57 @@ Page({
     selAreaName: '请选择',
     selProvinceIndex: 0,
     selCityIndex: 0,
-    selAreaIndex: 0
+    selAreaIndex: 0,
+
+    wxAddress: null
   },
+  readFromWx() {
+    let that = this
+    wx.chooseAddress({
+      success(res) {
+        let provinceName = res.provinceName
+        let cityName = res.cityName
+        let AreaName = res.countyName
+
+        console.log(res)
+
+        // 匹配省级
+        for (let i = 0; i < cityData.length; i++) {
+          if (provinceName === cityData[i].name) {
+            // 拿到省列表的第 i 个，并按照event事件传回去
+            let eventJ = {detail: {value: i}}
+
+            that.bindPickerProvinceChange(eventJ)
+
+            // 匹配市级
+            for (let j = 0; j < cityData[i].cityList.length; j++) {
+              if (cityName === cityData[i].cityList[j].name) {
+                eventJ = {detail: {value: j}}
+
+                that.bindPickerCityChange(eventJ)
+
+                console.log(cityData[i].cityList[j].districtList)
+                // 匹配地区
+                for (let k = 0; k < cityData[i].cityList[j].districtList.length; k++) {
+                  debugger
+                  if (AreaName === cityData[i].cityList[j].districtList[k].name) {
+
+                    eventJ = {detail: {value: k}}
+                    that.bindPickerAreaChange(eventJ)
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        that.setData({
+          wxAddress: res,
+        });
+      }
+    })
+  },
+
   bindCancel: function () {
     wx.navigateBack()
   },
@@ -81,7 +130,7 @@ Page({
     //   apiAddid = 0
     // }
 
-    console.log(name,phone,this.areaId,detail);
+    console.log(name, phone, this.areaId, detail)
 
     http.post("/address", {
       name,
@@ -90,7 +139,7 @@ Page({
       areaId: this.areaId,
     }).then(() => {
       wx.navigateBack()
-    },response => {
+    }, response => {
       wx.showModal({
         title: '提示',
         content: JSON.parse(response.response.data)["message"],
@@ -206,4 +255,5 @@ Page({
     //   })
     // }
   },
+
 })

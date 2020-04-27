@@ -3527,6 +3527,11 @@ var cityData = [{
   }, {
     "districtList": [
       {
+        "name": "市辖区",
+        "pid": 441900,
+        "id": 441901
+      },
+      {
         "name": "寮步镇",
         "pid": 441900,
         "id": 441928
