@@ -14,9 +14,9 @@ Page({
   },
 
   addAddress : function () {
-    // wx.navigateTo({
-    //   url:"/pages/address-add/index"
-    // })
+    wx.navigateTo({
+      url:"/pages/address/add/index"
+    })
   },
 
   editAddress: function (e) {

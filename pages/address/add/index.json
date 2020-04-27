@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新增地址",
+  "usingComponents": {
+    "van-area": "/dist/packages/@vant/weapp/dist/area/index"
+  }
+}

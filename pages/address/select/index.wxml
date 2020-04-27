@@ -9,8 +9,8 @@
                     {{item.detail}}
                 </view>
             </view>
-            <wxc-icon class="right-edit" type='edit' size='35' color='#999999' bindtap="editAddress"
-                      data-id="{{item.id}}"></wxc-icon>
+            <van-icon class="right-edit" name='edit' size='30' color='#999999' bind:click="editAddress"
+                      data-id="{{item.id}}"></van-icon>
             <!--<view class="right-edit" bindtap="editAddess" data-id="{{item.id}}"></view>-->
         </view>
     </view>
