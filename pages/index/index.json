@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "麻雀生鲜平台",
+  "usingComponents": {
+    "store-list": "../../components/store-list/store-list"
+  }
 }

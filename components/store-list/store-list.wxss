@@ -1,0 +1,35 @@
+
+.store{
+  margin-bottom: 40rpx;
+}
+.store-info {
+  display: flex;
+  height: 160rpx;
+}
+
+.store-img {
+  width: 180rpx;
+  margin: 0 20rpx;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.store-img image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.info {
+  font-size: 26rpx;
+  width: 100%;
+}
+
+.info .store-name {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.info .description {
+  padding-top: 18rpx;
+  padding-right: 10rpx;
+}

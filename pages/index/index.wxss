@@ -1,21 +1,93 @@
-/**index.wxss**/
-.userinfo {
+@import '../../style/iconfont.wxss';
+page {
+  background-color: white;
+}
+
+.icon {
+  margin: 0 10rpx;
+}
+
+.head {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 60rpx;
+  line-height: 60rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.head icon {
+  font-size: 30rpx;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.address {
+  width: 40%;
+  text-align: center;
 }
 
-.usermotto {
-  margin-top: 200px;
+.search {
+  box-sizing: border-box;
+  width: 60%;
+  padding: 0rpx 20rpx;
+  margin: 0rpx 20rpx;
+  border-radius: 30rpx;
+  background-color: #eee;
+}
+
+.search .hint {
+  font-size: 30rpx;
+  color: #808080;
+  padding-left: 4rpx;
+}
+
+.near-store {
+  font-size: 30rpx;
+  font-weight: 700;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  position: relative;
+  margin: 20rpx 0;
+}
+
+.near-store-text {
+  position: relative;
+}
+
+.near-store-text:after, .near-store-text:before {
+  background: #000;
+  content: "";
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  width: 80rpx;
+}
+
+.near-store-text:before {
+  left: -100rpx;
+}
+
+.near-store-text:after {
+  right: -100rpx;
+}
+
+.footer {
+  font-size: 28rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+.footer:after, .footer:before {
+  background: #aaa;
+  content: "";
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  width: 240rpx;
+}
+
+.footer:before {
+  left: 30rpx;
+}
+
+.footer:after {
+  right: 30rpx;
 }

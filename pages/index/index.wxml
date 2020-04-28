@@ -1,13 +1,25 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class="index_container">
+    <view class='head'>
+        <view class='address'>
+            <text class='icon iconfont icon-dingwei'></text>
+            <text>{{'寮步镇'}}</text>
+            <text class='icon iconfont icon-row-right-copy'></text>
+        </view>
+        <view class='search'>
+            <text class='icon iconfont icon-search'></text>
+            <text class="hint">{{'搜索店铺'}}</text>
+        </view>
+    </view>
+
+    <view class='near-store'>
+        <text class="near-store-text">附近店铺</text>
+    </view>
+
+    <view class='store-list'>
+        <store-list class='store-item'
+                    wx:for='{{storeList}}' wx:key="storeId"
+                    store-info="{{item}}" bind:select="select"/>
+    </view>
+
+    <view class='footer'>暂无更多</view>
 </view>
