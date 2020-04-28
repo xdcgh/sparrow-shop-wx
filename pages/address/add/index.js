@@ -138,7 +138,16 @@ Page({
       detail,
       areaId: this.areaId,
     }).then(() => {
-      wx.navigateBack()
+      wx.showToast({
+        title: '添加成功',
+        icon: 'success',
+        duration: 2000,
+        complete: () => {
+          setTimeout(function() {
+            wx.navigateBack()
+          }, 2000)
+        }
+      })
     }, response => {
       wx.showModal({
         title: '提示',
