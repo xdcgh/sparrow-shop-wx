@@ -19,7 +19,9 @@ Page({
     selCityIndex: 0,
     selAreaIndex: 0,
 
-    wxAddress: null
+    wxAddress: null,
+
+    address: null
   },
   readFromWx() {
     let that = this
@@ -49,7 +51,6 @@ Page({
                 console.log(cityData[i].cityList[j].districtList)
                 // 匹配地区
                 for (let k = 0; k < cityData[i].cityList[j].districtList.length; k++) {
-                  debugger
                   if (AreaName === cityData[i].cityList[j].districtList[k].name) {
 
                     eventJ = {detail: {value: k}}
@@ -63,7 +64,7 @@ Page({
 
         that.setData({
           wxAddress: res,
-        });
+        })
       }
     })
   },
@@ -76,6 +77,7 @@ Page({
     const detail = e.detail.value["detail"]
     const phone = e.detail.value["phone"]
 
+    // 数据清洗
     if (name === "") {
       wx.showModal({
         title: '提示',
@@ -119,42 +121,61 @@ Page({
       return
     }
 
-
-    // 判断该页的提交是更新还是创建
-    //
-    // let apiAddoRuPDATE = "add"
-    // let apiAddid = that.data.id
-    // if (apiAddid) {
-    //   apiAddoRuPDATE = "update"
-    // } else {
-    //   apiAddid = 0
-    // }
-
-    console.log(name, phone, this.areaId, detail)
-
-    http.post("/address", {
-      name,
-      phone,
-      detail,
-      areaId: this.areaId,
-    }).then(() => {
-      wx.showToast({
-        title: '添加成功',
-        icon: 'success',
-        duration: 2000,
-        complete: () => {
-          setTimeout(function() {
-            wx.navigateBack()
-          }, 2000)
-        }
+    // 判断当前行为是更新还是创建
+    if (this.data.address.id !== null) {
+      // 说明是更新
+      http.post("/address/update", {
+        id: this.data.address.id,
+        name,
+        phone,
+        detail,
+        areaId: this.areaId,
+      }).then(() => {
+        wx.showToast({
+          title: '更新成功',
+          icon: 'success',
+          duration: 2000,
+          complete: () => {
+            setTimeout(function () {
+              wx.navigateBack()
+            }, 2000)
+          }
+        })
+      }, response => {
+        wx.showModal({
+          title: '提示',
+          content: JSON.parse(response.response.data)["message"],
+          showCancel: false
+        })
       })
-    }, response => {
-      wx.showModal({
-        title: '提示',
-        content: JSON.parse(response.response.data)["message"],
-        showCancel: false
+    } else {
+      // 说明是创建
+      http.post("/address", {
+        name,
+        phone,
+        detail,
+        areaId: this.areaId,
+      }).then(() => {
+        wx.showToast({
+          title: '添加成功',
+          icon: 'success',
+          duration: 2000,
+          complete: () => {
+            setTimeout(function () {
+              wx.navigateBack()
+            }, 2000)
+          }
+        })
+      }, response => {
+        wx.showModal({
+          title: '提示',
+          content: JSON.parse(response.response.data)["message"],
+          showCancel: false
+        })
       })
-    })
+    }
+
+
 
   },
   selectCity: function () {
@@ -231,38 +252,81 @@ Page({
 
   onLoad: function (e) {
     this.initData(1)
-    // let id = e.id
-    // if (id) {
-    //   // 初始化原数据
-    //   wx.showLoading()
-    //   wx.request({
-    //     url: 'https://api.it120.cc/' + app.globalData.subDomain + '/user/shipping-address/detail',
-    //     data: {
-    //       token: wx.getStorageSync('token'),
-    //       id: id
-    //     },
-    //     success: function (res) {
-    //       wx.hideLoading()
-    //       if (res.data.code == 0) {
-    //         that.setData({
-    //           id: id,
-    //           addressData: res.data.data,
-    //           selProvinceName: res.data.data.provinceStr,
-    //           selCityName: res.data.data.cityStr,
-    //           selAreaName: res.data.data.areaStr
-    //         })
-    //         that.setDBSaveAddressId(res.data.data)
-    //         return
-    //       } else {
-    //         wx.showModal({
-    //           title: '提示',
-    //           content: '无法获取快递地址数据',
-    //           showCancel: false
-    //         })
-    //       }
-    //     }
-    //   })
-    // }
+
+    http.get(`/address/${e.id}`).then(response => {
+      const address = JSON.parse(response.data)["data"]
+
+      // 如 areaId = 441912
+      // provinceId = 440000
+      // cityId = 441900
+      const provinceId = address.areaId.toString().substring(0, 2) + "0000"
+      const cityId = address.areaId.toString().substring(0, 4) + "00"
+
+      // 通过 id 匹配省级
+      for (let i = 0; i < cityData.length; i++) {
+        if (provinceId == cityData[i].id) {
+          // 拿到省列表的第 i 个，并按照event事件传回去
+          let eventJ = {detail: {value: i}}
+
+          this.bindPickerProvinceChange(eventJ)
+
+          // 匹配市级
+          for (let j = 0; j < cityData[i].cityList.length; j++) {
+            if (cityId == cityData[i].cityList[j].id) {
+              eventJ = {detail: {value: j}}
+
+              this.bindPickerCityChange(eventJ)
+
+              console.log(cityData[i].cityList[j].districtList)
+              // 匹配地区
+              for (let k = 0; k < cityData[i].cityList[j].districtList.length; k++) {
+                if (address.areaId == cityData[i].cityList[j].districtList[k].id) {
+
+                  eventJ = {detail: {value: k}}
+                  this.bindPickerAreaChange(eventJ)
+                }
+              }
+            }
+          }
+        }
+      }
+
+      this.setData({
+        address
+      })
+    })
+  },
+
+  deleteAddress: function (e) {
+    const id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除该收货地址吗？',
+      success: function (res) {
+        if (res.confirm) {
+          http.delete(`/address/${id}`).then(() => {
+            wx.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 2000,
+              complete: () => {
+                setTimeout(function () {
+                  wx.navigateBack()
+                }, 2000)
+              }
+            })
+          }, response => {
+            wx.showModal({
+              title: '提示',
+              content: JSON.parse(response.response.data)["message"],
+              showCancel: false
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
 })

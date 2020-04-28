@@ -20,9 +20,9 @@ Page({
   },
 
   editAddress: function (e) {
-    // wx.navigateTo({
-    //   url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
-    // })
+    wx.navigateTo({
+      url: "/pages/address/add/index?id=" + e.currentTarget.dataset.id
+    })
   },
 
   onLoad: function () {
