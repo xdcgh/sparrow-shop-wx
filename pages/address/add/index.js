@@ -122,7 +122,7 @@ Page({
     }
 
     // 判断当前行为是更新还是创建
-    if (this.data.address.id !== null) {
+    if (this.data.address !== null) {
       // 说明是更新
       http.post("/address/update", {
         id: this.data.address.id,
@@ -253,48 +253,54 @@ Page({
   onLoad: function (e) {
     this.initData(1)
 
-    http.get(`/address/${e.id}`).then(response => {
-      const address = JSON.parse(response.data)["data"]
+    if (e.id !== undefined) {
+      wx.setNavigationBarTitle({
+        title: '更新地址'
+      })
 
-      // 如 areaId = 441912
-      // provinceId = 440000
-      // cityId = 441900
-      const provinceId = address.areaId.toString().substring(0, 2) + "0000"
-      const cityId = address.areaId.toString().substring(0, 4) + "00"
+      http.get(`/address/${e.id}`).then(response => {
+        const address = JSON.parse(response.data)["data"]
 
-      // 通过 id 匹配省级
-      for (let i = 0; i < cityData.length; i++) {
-        if (provinceId == cityData[i].id) {
-          // 拿到省列表的第 i 个，并按照event事件传回去
-          let eventJ = {detail: {value: i}}
+        // 如 areaId = 441912
+        // provinceId = 440000
+        // cityId = 441900
+        const provinceId = address.areaId.toString().substring(0, 2) + "0000"
+        const cityId = address.areaId.toString().substring(0, 4) + "00"
 
-          this.bindPickerProvinceChange(eventJ)
+        // 通过 id 匹配省级
+        for (let i = 0; i < cityData.length; i++) {
+          if (provinceId == cityData[i].id) {
+            // 拿到省列表的第 i 个，并按照event事件传回去
+            let eventJ = {detail: {value: i}}
 
-          // 匹配市级
-          for (let j = 0; j < cityData[i].cityList.length; j++) {
-            if (cityId == cityData[i].cityList[j].id) {
-              eventJ = {detail: {value: j}}
+            this.bindPickerProvinceChange(eventJ)
 
-              this.bindPickerCityChange(eventJ)
+            // 匹配市级
+            for (let j = 0; j < cityData[i].cityList.length; j++) {
+              if (cityId == cityData[i].cityList[j].id) {
+                eventJ = {detail: {value: j}}
 
-              console.log(cityData[i].cityList[j].districtList)
-              // 匹配地区
-              for (let k = 0; k < cityData[i].cityList[j].districtList.length; k++) {
-                if (address.areaId == cityData[i].cityList[j].districtList[k].id) {
+                this.bindPickerCityChange(eventJ)
 
-                  eventJ = {detail: {value: k}}
-                  this.bindPickerAreaChange(eventJ)
+                console.log(cityData[i].cityList[j].districtList)
+                // 匹配地区
+                for (let k = 0; k < cityData[i].cityList[j].districtList.length; k++) {
+                  if (address.areaId == cityData[i].cityList[j].districtList[k].id) {
+
+                    eventJ = {detail: {value: k}}
+                    this.bindPickerAreaChange(eventJ)
+                  }
                 }
               }
             }
           }
         }
-      }
 
-      this.setData({
-        address
+        this.setData({
+          address
+        })
       })
-    })
+    }
   },
 
   deleteAddress: function (e) {
