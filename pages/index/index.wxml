@@ -2,7 +2,7 @@
     <view class='head'>
         <view class='address'>
             <text class='icon iconfont icon-dingwei'></text>
-            <text>{{'寮步镇'}}</text>
+            <text>{{areaName}}</text>
             <text class='icon iconfont icon-row-right-copy'></text>
         </view>
         <view class='search'>
@@ -17,8 +17,8 @@
 
     <view class='store-list'>
         <store-list class='store-item'
-                    wx:for='{{storeList}}' wx:key="storeId"
-                    store-info="{{item}}" bind:select="select"/>
+                    wx:for='{{storeList}}' wx:key="id"
+                    store-info="{{item}}" bind:select="selectShop"/>
     </view>
 
     <view class='footer'>暂无更多</view>
