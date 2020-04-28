@@ -31,7 +31,6 @@ Page({
         let cityName = res.cityName
         let AreaName = res.countyName
 
-        console.log(res)
 
         // 匹配省级
         for (let i = 0; i < cityData.length; i++) {
@@ -48,7 +47,6 @@ Page({
 
                 that.bindPickerCityChange(eventJ)
 
-                console.log(cityData[i].cityList[j].districtList)
                 // 匹配地区
                 for (let k = 0; k < cityData[i].cityList[j].districtList.length; k++) {
                   if (AreaName === cityData[i].cityList[j].districtList[k].name) {
@@ -282,7 +280,6 @@ Page({
 
                 this.bindPickerCityChange(eventJ)
 
-                console.log(cityData[i].cityList[j].districtList)
                 // 匹配地区
                 for (let k = 0; k < cityData[i].cityList[j].districtList.length; k++) {
                   if (address.areaId == cityData[i].cityList[j].districtList[k].id) {
