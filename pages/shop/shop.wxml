@@ -70,7 +70,7 @@
                                     <view class='reduce btn'
                                           wx:if="{{fresh.count > 0}}"
                                           bindtap="reduce" data-item="{{fresh}}"
-                                          data-groupIndex="{{groupIndex}}" data-index="{{index}}">-
+                                          data-group-index="{{groupIndex}}" data-fresh-index="{{index}}">-
                                     </view>
                                 </view>
                             </view>

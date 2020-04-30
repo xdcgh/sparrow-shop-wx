@@ -52,7 +52,14 @@ Page({
     })
   },
 
-  addFresh: function (groupIndex, freshIndex) {
+  add(e) {
+    let groupIndex = e.target.dataset.groupIndex
+    let freshIndex = e.target.dataset.freshIndex
+
+    this.addFresh(groupIndex, freshIndex)
+  },
+
+  addFresh(groupIndex, freshIndex) {
     let fresh = this.data.typeFreshLists[groupIndex]["freshList"][freshIndex]
 
     this.setData({
@@ -92,20 +99,22 @@ Page({
       // 购物车总结，加上当前生鲜单价
       totalMoney: this.data.totalMoney + fresh.price
     })
-  }, add(e) {
+  },
+
+  reduce(e) {
     let groupIndex = e.target.dataset.groupIndex
     let freshIndex = e.target.dataset.freshIndex
 
-    this.addFresh(groupIndex, freshIndex)
+    this.reduceFresh(groupIndex, freshIndex)
   },
 
-  reduceFresh: function (groupIndex, freshIndex) {
+  reduceFresh(groupIndex, freshIndex) {
     let fresh = this.data.typeFreshLists[groupIndex]["freshList"][freshIndex]
 
     this.setData({
-      // 生鲜自己的数量加一
+      // 生鲜自己的数量减一
       ["typeFreshLists[" + groupIndex + "].freshList[" + freshIndex + "].count"]: fresh.count - 1,
-      // 该生鲜的类别数量加一
+      // 该生鲜的类别数量减一
       ["typeFreshLists[" + groupIndex + "].currentCount"]: this.data.typeFreshLists[groupIndex]["currentCount"] - 1
     })
 
@@ -128,12 +137,8 @@ Page({
       cart: cart,
       totalMoney: this.data.totalMoney - fresh.price
     })
-  }, reduce(e) {
-    let groupIndex = e.target.dataset.groupIndex
-    let freshIndex = e.target.dataset.freshIndex
-
-    this.reduceFresh(groupIndex, freshIndex)
   },
+
 
   onLoad(event) {
     const shopId = event.id
