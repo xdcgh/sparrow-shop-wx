@@ -93,7 +93,8 @@
                 <view class="money">￥{{totalMoney}}</view>
             </view>
 
-            <view class="start-del {{cart.length>0 ? 'has-food' : ''}}">去结算</view>
+            <view class="start-del {{cart.length>0 ? 'has-food' : ''}}"
+            bindtap="goOrder">去结算</view>
         </view>
 
         <view class="cart-list" wx:if="{{showCart}}">

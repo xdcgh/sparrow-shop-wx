@@ -24,6 +24,32 @@ Page({
     totalMoney: 0
   },
 
+  onUnload() {
+    this.saveLocalData()
+  },
+
+  goOrder() {
+    // 将目前的数据保存到本地，防止用户没登陆，就直接下单
+    this.saveLocalData()
+
+    http.post("/").then(response => {
+
+    })
+  },
+
+  saveLocalData() {
+    wx.setStorageSync(`shopData${this.data.shop.id}`, JSON.stringify({
+      ...this.data
+    }))
+  },
+
+  readLocalData(shopId) {
+    const shopData = JSON.parse(wx.getStorageSync(`shopData${shopId}`))
+      this.setData({
+        ...shopData
+      })
+  },
+
   cartReduce(e) {
     const fresh = this.data.cart[e.target.dataset.index]
 
@@ -143,12 +169,17 @@ Page({
   onLoad(event) {
     const shopId = event.id
 
-    http.get(`/fresh/shop/${shopId}`).then(response => {
-      this.setData({
-        ...JSON.parse(response.data)["data"]
-      })
+    const shopData = wx.getStorageSync(`shopData${shopId}`)
 
-    })
+    if (shopData) {
+      http.get(`/fresh/shop/${shopId}`).then(response => {
+        this.setData({
+          ...JSON.parse(response.data)["data"]
+        })
+      })
+    } else {
+     this.readLocalData(shopId);
+    }
   },
 
   onReady: function () {
