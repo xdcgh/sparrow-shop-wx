@@ -21,8 +21,8 @@ Page({
   selectShop(event) {
     const id = event.detail
 
-    http.get(`/shop/id/${id}`).then(response => {
-      console.dir(response)
+    wx.navigateTo({
+      url: "/pages/shop/shop?id=" + id
     })
   }
 })

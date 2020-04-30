@@ -1,0 +1,124 @@
+<view class='store-container'>
+    <view class='head'>
+        <view class="head-img">
+            <image src='{{shop.logo}}'></image>
+        </view>
+        <view class="head-detail">
+            <view class="shopName">{{shop.name}}</view>
+            <view class="description">{{shop.description}}</view>
+        </view>
+    </view>
+
+    <view class='fresh'>
+
+        <view class='freshType' style='height:{{listHeight}}px'>
+            <!--  viewToLeft 用户滚动列表，并设置到该类别上-->
+            <scroll-view scroll-y scroll-with-animation scroll-into-view="{{viewToLeft}}"
+                         style='height:{{listHeight}}px'>
+
+                <!-- 由于事件没有冒泡，需要将文本要写入 index 和 typeId 的信息-->
+                <view class="foodType-item {{activeIndex===index?'active':''}}"
+                      wx:for="{{typeFreshLists}}" wx:key="id"
+                      data-index="{{index}}" data-typeId="{{'title'+item.id}}"
+                      bindtap='selectFreshType' id="{{'title'+ item.id+'left'}}">
+
+                    <view class='text' data-index="{{index}}" data-typeId="{{'title'+item.id}}">{{item.name}}</view>
+                    <view class="dot" wx:if="{{item.currentCount>0}}">{{item.currentCount}}</view>
+
+                </view>
+
+            </scroll-view>
+
+        </view>
+
+        <view class='freshList'>
+            <scroll-view scroll-y scroll-with-animation style='height:{{listHeight}}px'
+                         scroll-into-view="{{viewTo}}" bindscroll="scroll">
+
+                <view class="title-group"
+                      wx:for="{{typeFreshLists}}" wx:key="name"
+                      wx:for-index="groupIndex" wx:for-item="typeFresh">
+
+                    <view class='title' id="{{'title'+typeFresh.id}}">{{typeFresh.name}}</view>
+                    <view class='FreshInfo'
+                          wx:for="{{typeFresh.freshList}}" wx:key="id"
+                          wx:for-index="index" wx:for-item="fresh">
+
+                        <view class='img'>
+                            <image src='{{fresh.picture}}'></image>
+                        </view>
+
+                        <view class='shopName'>
+
+                            <view class='name'>{{fresh.name}}</view>
+
+                            <view class='note'>{{fresh.description}}</view>
+
+                            <view class='price-count'>
+
+                                <view class='price'>￥{{fresh.price}}</view>
+
+                                <view class='count'>
+
+                                    <view class='add btn'
+                                          bindtap="add" data-item="{{fresh}}"
+                                          data-group-index="{{groupIndex}}" data-fresh-index="{{index}}">+
+                                    </view>
+
+                                    <view class='num'>{{fresh.count}}</view>
+
+                                    <view class='reduce btn'
+                                          wx:if="{{fresh.count > 0}}"
+                                          bindtap="reduce" data-item="{{fresh}}"
+                                          data-groupIndex="{{groupIndex}}" data-index="{{index}}">-
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+
+    </view>
+
+    <view class="cart">
+        <view class="cart-container">
+
+            <view class="cart-img {{cart.length>0?'has-food':''}}" bindtap="listCart">
+                <image src="{{cart.length>0?'/images/gouwuche-black.png':'/images/gouwuche.png'}}"></image>
+            </view>
+
+            <view class="del-price-money">
+                <view class="money">￥{{totalMoney}}</view>
+            </view>
+
+            <view class="start-del {{cart.length>0 ? 'has-food' : ''}}">去结算</view>
+        </view>
+
+        <view class="cart-list" wx:if="{{showCart}}">
+
+            <view class="cart-list-header">我的购物车</view>
+
+            <view class="cart-list-item">
+
+                <view class="item"
+                      wx:for="{{cart}}" wx:key="index">
+
+                    <view class="cart-detail">{{item.name}}</view>
+
+                    <view class="cart-detail" style="color:red">￥{{item.price}}</view>
+
+                    <view class="cart-detail cart-count">
+
+                        <view class='add btn' bindtap="cartReduce" data-index="{{index}}">-</view>
+
+                        {{item.count}}
+
+                        <view class='add btn' bindtap="cartAdd" data-index="{{index}}">+</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
