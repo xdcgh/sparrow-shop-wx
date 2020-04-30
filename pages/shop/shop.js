@@ -38,8 +38,13 @@ Page({
   },
 
   saveLocalData() {
+    // 设置有效期为1分钟
+    const timestamp = Date.parse(new Date().toDateString());
+    const expiration = timestamp + 60000;
+
     wx.setStorageSync(`shopData${this.data.shop.id}`, JSON.stringify({
-      ...this.data
+      ...this.data,
+      expiration
     }))
   },
 
@@ -171,15 +176,23 @@ Page({
 
     const shopData = wx.getStorageSync(`shopData${shopId}`)
 
-    if (shopData) {
-      http.get(`/fresh/shop/${shopId}`).then(response => {
-        this.setData({
-          ...JSON.parse(response.data)["data"]
-        })
-      })
-    } else {
-     this.readLocalData(shopId);
+    // 商铺本地存有数据，且数据未失效
+    // 就读取本地数据
+    if (shopData !== "") {
+      const timestamp = Date.parse(new Date().toDateString())
+
+      if (timestamp < JSON.parse(shopData).expiration) {
+        this.readLocalData(shopId);
+
+        return
+      }
     }
+
+    http.get(`/fresh/shop/${shopId}`).then(response => {
+      this.setData({
+        ...JSON.parse(response.data)["data"]
+      })
+    })
   },
 
   onReady: function () {
