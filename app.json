@@ -1,12 +1,14 @@
 {
   "pages":[
+    "pages/order/toOrder/toOrder",
+    "pages/my/my",
+    "pages/order/list/list",
+    "pages/order/detail/detail",
     "pages/index/index",
     "pages/shop/shop",
-    "pages/my/my",
     "pages/address/select/index",
     "pages/address/add/index",
     "pages/recharge/recharge",
-    "pages/order/order",
     "pages/login/login",
     "pages/logs/logs"
   ],
@@ -29,7 +31,7 @@
         "selectedIconPath": "images/icon/index-active.png"
       },
       {
-        "pagePath": "pages/order/order",
+        "pagePath": "pages/order/list/list",
         "text": "订单",
         "iconPath": "images/icon/order.png",
         "selectedIconPath": "images/icon/order-active.png"
