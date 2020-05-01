@@ -32,20 +32,28 @@ Page({
     // 将目前的数据保存到本地，防止用户没登陆，就直接下单
     this.saveLocalData()
 
-    http.post("/").then(response => {
+    const shopId = this.data.shop.id
 
+    // 清空内存的数据缓存
+    this.data = {}
+
+    wx.navigateTo({
+      url: "/pages/order/toOrder/toOrder?id=" + shopId
     })
   },
 
   saveLocalData() {
-    // 设置有效期为1分钟
-    const timestamp = Date.parse(new Date().toDateString());
-    const expiration = timestamp + 60000;
+    // 如果内存中还有商店信息的，说明可以执行保存
+    if (this.data.shop) {
+      // 设置有效期为30分钟
+      const timestamp = Date.parse(new Date().toDateString());
+      const expiration = timestamp + 1800000;
 
-    wx.setStorageSync(`shopData${this.data.shop.id}`, JSON.stringify({
-      ...this.data,
-      expiration
-    }))
+      wx.setStorageSync(`shopData${this.data.shop.id}`, JSON.stringify({
+        ...this.data,
+        expiration
+      }))
+    }
   },
 
   readLocalData(shopId) {
@@ -172,7 +180,14 @@ Page({
 
 
   onLoad(event) {
-    const shopId = event.id
+    this.setData({
+      shopId: event.id
+    })
+  },
+
+  onShow() {
+    // 由于首页传来的shopId,只能在onLoad阶段获取
+    const shopId = this.data.shopId
 
     const shopData = wx.getStorageSync(`shopData${shopId}`)
 

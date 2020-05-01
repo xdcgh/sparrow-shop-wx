@@ -24,45 +24,34 @@
 
         <view class="fresh-list">
 
-            <view class="list-title">商品列表</view>
+            <view class="list-title">{{shop.name}}</view>
 
-            <view class="a-goods"
-                  wx:for-items="{{goodsList}}" wx:key="index">
+            <view class="a-fresh"
+                  wx:for-items="{{freshList}}" wx:key="index">
 
                 <view class="img-box">
-                    <image src="{{item.pic}}" class="img"/>
+                    <image src="{{item.picture}}" class="img"/>
                 </view>
 
                 <view class="text-box">
-                    <view class="arow arow01">
+                    <view class="row row01">
                         <view class="fresh-name">{{item.name}}</view>
                         <view class="fresh-price">¥ {{item.price}}</view>
                     </view>
-                    <view class="arow">
-                        <view class="fresh-label">{{item.label}}</view>
-                        <view class="fresh-num">x {{item.number}}</view>
+                    <view class="row">
+                        <view class="fresh-num">x {{item.count}}</view>
                     </view>
                 </view>
             </view>
         </view>
 
-
-        <view class="goods-info" wx:if="{{(isNeedLogistics > 0 && yunPrice > 0) || (!hasNoCoupons)}}">
-            <view class="row-box" wx:if="{{isNeedLogistics > 0 && yunPrice > 0}}">
-                <view class="row-label">商品金额</view>
-                <view class="right-text">¥ {{allGoodsPrice}}</view>
-            </view>
-        </view>
-
-        <view class="goods-info-no" wx:else></view>
-
-        <view class="jiesuan-box">
+        <view class="account-box">
 
             <view class="left-price">
-                <view class="total">合计：¥ {{allGoodsAndYunPrice - youhuijine}}</view>
+                <view class="total">合计：¥ {{totalMoney}}</view>
             </view>
 
-            <button class="to-pay-btn" formType="submit">提交订单</button>
+            <button class="to-pay-btn" bindtap="submit">提交订单</button>
         </view>
     </form>
 </view>
