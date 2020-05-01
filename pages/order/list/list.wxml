@@ -1,2 +1,43 @@
-<!--pages/order/list/list.wxml-->
-<text>pages/order/list/list.wxml</text>
+<view class="container">
+    <view class="orders">
+        <navigator class="order"
+                   wx:for="{{orderList}}" wx:key="index" wx:for-item="order"
+                   url="../detail/detail?id={{order.id}}">
+
+            <view class="h">
+                <view class="l">订单编号：{{order.id}}</view>
+                <view class="r">{{order.status}}</view>
+            </view>
+
+            <view class="goods"
+                  wx:for="{{order.freshList}}" wx:key="id" wx:for-item="fresh">
+                <view class="img">
+                    <image src="{{fresh.picture}}"></image>
+                </view>
+                <view class="info">
+                    <view class="name">
+                        <view>{{fresh.name}}</view>
+                        <view class="price">￥{{fresh.price}}元</view>
+                    </view>
+                    <text class="number">共{{fresh.count}}件商品</text>
+                </view>
+                <view class="status"></view>
+            </view>
+
+            <view class="b">
+                <view class="l">实付：￥{{order.totalMoney / 100}}</view>
+                <view class="r">
+                    <!--      todo 退单功能              -->
+                    <button class="btn cancelBtn"
+                            data-order-id="{{order.id}}" catchtap="cancelOrder"
+                            wx:if="{{order.status === '待配送'}}">取消订单
+                    </button>
+                    <button class="btn callBtn"
+                            data-phone="{{order.shop.phone}}" catchtap="callShopOwen"
+                            wx:else>联系商家
+                    </button>
+                </view>
+            </view>
+        </navigator>
+    </view>
+</view>

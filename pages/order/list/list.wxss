@@ -1,1 +1,130 @@
-/* pages/order/list/list.wxss */
+page {
+    background: #f4f4f4;
+    width: 100%;
+}
+
+.orders {
+    height: auto;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.order {
+    margin-top: 20rpx;
+    background: #fff;
+}
+
+.order .h {
+    height: 83.3rpx;
+    line-height: 83.3rpx;
+    margin-left: 31.25rpx;
+    padding-right: 31.25rpx;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 30rpx;
+    color: #333;
+}
+
+.order .h .l {
+    float: left;
+}
+
+.order .h .r {
+    float: right;
+    color: #b4282d;
+    font-size: 24rpx;
+}
+
+.order .goods {
+    display: flex;
+    align-items: center;
+    padding: 4rpx 0;
+    margin-left: 31.25rpx;
+    width: 100%;
+}
+
+.order .goods .img {
+    height: 145.83rpx;
+    width: 145.83rpx;
+    background: #f4f4f4;
+}
+
+.order .goods .img image {
+    height: 145.83rpx;
+    width: 145.83rpx;
+}
+
+.order .goods .info {
+    height: 145.83rpx;
+    width: 100%;
+    flex-grow: 1;
+    padding-left: 20rpx;
+}
+
+.order .goods .name {
+    margin: 12rpx 0;
+    height: 44rpx;
+    line-height: 44rpx;
+    color: #333;
+    font-size: 32rpx;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.order .goods .name .price {
+    padding-left: 10rpx;
+    margin-left: 39rpx;
+
+}
+
+.order .goods .number {
+    display: block;
+    height: 37rpx;
+    line-height: 37rpx;
+    color: #666;
+    font-size: 25rpx;
+    padding-top: 4rpx;
+}
+
+.order .goods .status {
+    width: 105rpx;
+    color: #b4282d;
+    font-size: 25rpx;
+}
+
+.order .b {
+    height: 103rpx;
+    line-height: 103rpx;
+    margin-left: 31.25rpx;
+    padding-right: 31.25rpx;
+    border-top: 1px solid #f4f4f4;
+    font-size: 30rpx;
+    color: #333;
+}
+
+.order .b .l {
+    float: left;
+}
+
+.order .b .r {
+    float: right;
+}
+
+.order .b .btn {
+    margin-top: 19rpx;
+    height: 64.5rpx;
+    line-height: 64.5rpx;
+    text-align: center;
+    padding: 0 20rpx;
+    border-radius: 5rpx;
+    font-size: 28rpx;
+    color: #fff;
+}
+
+.order .b .cancelBtn {
+    background: #b4282d;
+}
+
+.order .b .callBtn {
+    background: #3fa6d0;
+}
