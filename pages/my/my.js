@@ -12,6 +12,32 @@ Page({
     version: "0.2.0",
     account: 0
   },
+  clearData() {
+    wx.showModal({
+      title: '提示',
+      content: '确定要清除本地缓存数据吗？',
+      success: (res) => {
+        if (res.confirm) {
+          wx.clearStorageSync()
+
+          wx.showToast({
+            title: '清除成功！',
+            icon: 'success',
+            duration: 1500,
+
+            complete: () => {
+              setTimeout(() => {
+                this.onShow()
+              }, 1500)
+            }
+          })
+        }
+      }
+    })
+
+
+  },
+
   login() {
     wx.navigateTo({url: "/pages/login/login"})
   },
