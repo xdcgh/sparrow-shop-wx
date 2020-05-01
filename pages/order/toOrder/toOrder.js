@@ -55,6 +55,12 @@ Page({
           }, 2000)
         }
       })
+    }, () => {
+      wx.showToast({
+        title: '服务出问题了，稍后再试！',
+        icon: 'success',
+        duration: 2000,
+      })
     })
   },
 
