@@ -36,7 +36,8 @@ Page({
     http.post("/order", {
       shop: this.data.shop,
       address: this.data.address,
-      totalMoney: this.data.totalMoney,
+      // 数据库中的金钱单位为 分
+      totalMoney: this.data.totalMoney * 100,
       freshList: this.data.freshList
     }).then(() => {
       wx.showToast({

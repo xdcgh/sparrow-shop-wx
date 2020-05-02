@@ -82,9 +82,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      isLogin: util.isLogin(),
-      account: util.getAccount()
+    this.updateUserData()
+  },
+
+  updateUserData() {
+    http.post("/status").then(response => {
+      setTimeout(() => {
+        wx.setStorageSync('me', JSON.parse(response.data)["data"])
+
+        this.setData({
+          isLogin: util.isLogin(),
+          account: util.getAccount()
+        })
+      })
     })
   },
 

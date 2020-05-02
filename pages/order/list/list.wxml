@@ -30,7 +30,7 @@
                     <!--      todo 退单功能              -->
                     <button class="btn cancelBtn"
                             data-order-id="{{order.id}}" catchtap="cancelOrder"
-                            wx:if="{{order.status === '待配送'}}">取消订单
+                            wx:if="{{order.status === '待配送'}}">申请退款
                     </button>
                     <button class="btn callBtn"
                             data-phone="{{order.shop.phone}}" catchtap="callShopOwen"
