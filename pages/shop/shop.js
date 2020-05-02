@@ -46,8 +46,8 @@ Page({
     // 如果内存中还有商店信息的，说明可以执行保存
     if (this.data.shop) {
       // 设置有效期为30分钟
-      const timestamp = Date.parse(new Date().toDateString());
-      const expiration = timestamp + 1800000;
+      const timestamp = Date.parse(new Date().toDateString())
+      const expiration = timestamp + 1800000
 
       wx.setStorageSync(`shopData${this.data.shop.id}`, JSON.stringify({
         ...this.data,
@@ -58,9 +58,9 @@ Page({
 
   readLocalData(shopId) {
     const shopData = JSON.parse(wx.getStorageSync(`shopData${shopId}`))
-      this.setData({
-        ...shopData
-      })
+    this.setData({
+      ...shopData
+    })
   },
 
   cartReduce(e) {
@@ -197,7 +197,7 @@ Page({
       const timestamp = Date.parse(new Date().toDateString())
 
       if (timestamp < JSON.parse(shopData).expiration) {
-        this.readLocalData(shopId);
+        this.readLocalData(shopId)
 
         return
       }
@@ -216,7 +216,7 @@ Page({
 
   // 设置生鲜商品列表的高度
   calculateListHeight() {
-    let windowHeight = wx.getSystemInfoSync().windowHeight
+    let windowHeight = wx.getSystemInfoSync().windowHeight - 60
     let query = wx.createSelectorQuery()
 
     query.select(".head").boundingClientRect()

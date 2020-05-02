@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/order/list/list",
     "pages/index/index",
+    "pages/order/list/list",
     "pages/order/toOrder/toOrder",
     "pages/my/my",
     "pages/order/detail/detail",

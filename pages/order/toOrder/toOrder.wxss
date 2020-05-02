@@ -127,6 +127,7 @@ form {
   z-index: 500;
   border-top: 1px solid #f4f4f4;
   background-color: #fff;
+  padding-bottom: 30rpx;
 }
 
 .account-box .to-pay-btn {
