@@ -7,7 +7,31 @@ Page({
     orderList: []
   },
   cancelOrder(event) {
+    wx.showModal({
+      title: '提示',
+      content: '确定要申请退款吗？',
+      success: (res) => {
+        if (res.confirm) {
 
+          http.post("/order/update",{
+            id: event.target.dataset.orderId,
+            status: "退款中"
+          })
+
+          wx.showToast({
+            title: '申请成功！',
+            icon: 'success',
+            duration: 1500,
+
+            complete: () => {
+              setTimeout(() => {
+                this.onShow()
+              }, 1500)
+            }
+          })
+        }
+      }
+    })
   },
 
   onShow() {
