@@ -35,7 +35,19 @@ Page({
     const shopId = this.data.shop.id
 
     // 清空内存的数据缓存
-    this.data = {}
+    this.setData({
+      // 转跳索引模块
+      activeIndex: 0,
+      viewTo: "",
+
+      // 商铺和生鲜展示模块
+      typeFreshLists: [],
+
+      // 购物车模块
+      showCart: false,
+      cart: [],
+      totalMoney: 0
+    })
 
     wx.navigateTo({
       url: "/pages/order/toOrder/toOrder?id=" + shopId
@@ -187,7 +199,7 @@ Page({
 
   onShow() {
     // 由于首页传来的shopId,只能在onLoad阶段获取
-    const shopId = this.data.shopId
+    const shopId = this.data.shopId || this.data.shop.id
 
     const shopData = wx.getStorageSync(`shopData${shopId}`)
 
