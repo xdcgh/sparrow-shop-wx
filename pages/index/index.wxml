@@ -5,10 +5,10 @@
             <text>{{areaName}}</text>
             <text class='icon iconfont icon-row-right-copy'></text>
         </view>
-        <view class='search'>
+        <navigator url="../search/search?areaId={{areaId}}" class='search'>
             <text class='icon iconfont icon-search'></text>
-            <text class="hint">{{'搜索店铺'}}</text>
-        </view>
+            <text class="hint">{{'搜索生鲜'}}</text>
+        </navigator>
     </view>
 
     <view class='near-store'>
