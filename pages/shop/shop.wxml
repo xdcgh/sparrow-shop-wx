@@ -1,7 +1,7 @@
 <view class='store-container'>
     <view class='head'>
         <view class="head-img">
-            <image src='{{shop.logo}}'></image>
+            <image src='{{shop.logo}}' mode="widthFix"></image>
         </view>
         <view class="head-detail">
             <view class="shopName">{{shop.name}}</view>
@@ -45,7 +45,7 @@
                           wx:for-index="index" wx:for-item="fresh">
 
                         <view class='img'>
-                            <image src='{{fresh.picture}}'></image>
+                            <image src='{{fresh.picture}}' mode="widthFix"></image>
                         </view>
 
                         <view class='shopName'>

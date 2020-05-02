@@ -30,7 +30,7 @@
                   wx:for-items="{{freshList}}" wx:key="index">
 
                 <view class="img-box">
-                    <image src="{{item.picture}}" class="img"/>
+                    <image src="{{item.picture}}" class="img" mode="widthFix"/>
                 </view>
 
                 <view class="text-box">

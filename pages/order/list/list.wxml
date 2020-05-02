@@ -12,7 +12,7 @@
             <view class="goods"
                   wx:for="{{order.freshList}}" wx:key="id" wx:for-item="fresh">
                 <view class="img">
-                    <image src="{{fresh.picture}}"></image>
+                    <image src="{{fresh.picture}}"  mode="widthFix"></image>
                 </view>
                 <view class="info">
                     <view class="name">

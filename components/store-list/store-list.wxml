@@ -1,7 +1,7 @@
 <view class='store'>
     <view class='store-info' bindtap="selectStore">
         <view class='store-img'>
-            <image src='{{storeInfo.logo}}'></image>
+            <image src='{{storeInfo.logo}}' mode="widthFix"></image>
         </view>
         <view class='info'>
             <view class='store-name'>{{storeInfo.name}}</view>
