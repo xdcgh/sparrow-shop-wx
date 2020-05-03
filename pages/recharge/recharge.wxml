@@ -14,4 +14,8 @@
     <button class="rechargeButton" bindtap="toRecharge">
         立即充值
     </button>
+
+    <button class="withdrawButton" bindtap="toWithdraw">
+        立即提现
+    </button>
 </view>

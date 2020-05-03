@@ -75,6 +75,19 @@ button::after {
     background: linear-gradient(to right, #ef9b75, #f6705a);
 }
 
+.withdrawButton {
+    width: 540rpx;
+    height: 80rpx;
+    border-radius: 16rpx;
+    color: black;
+    font-size: 26rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rpx;
+    background: inherit;
+}
+
 .recharge .binding {
     color: #f6705a;
     font-size: 24rpx;

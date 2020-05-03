@@ -9,7 +9,7 @@ Page({
    */
   data: {
     isLogin: false,
-    version: "0.2.0",
+    version: "",
     account: 0
   },
   clearData() {
@@ -81,6 +81,10 @@ Page({
    */
   onShow: function () {
     this.updateUserData()
+
+    this.setData({
+      version: getApp().globalData.version
+    })
   },
 
   updateUserData() {
