@@ -27,7 +27,7 @@
         <view class="line"></view>
         <navigator url="/pages/recharge/recharge">
             <view class="menu-item">
-                <view class="l">充值中心</view>
+                <view class="l">余额管理</view>
                 <image class="next" src="/images/icon/next.png"></image>
             </view>
         </navigator>
