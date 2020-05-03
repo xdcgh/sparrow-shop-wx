@@ -17,5 +17,11 @@ Page({
         order
       })
     })
+  },
+
+  callShopOwen(event) {
+    wx.makePhoneCall({
+      phoneNumber: event.target.dataset.phone
+    })
   }
 })

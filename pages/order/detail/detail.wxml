@@ -4,14 +4,19 @@
         <view class="item-b">订单编号：{{order.id}}</view>
         <view class="item-c">
             <view class="l">实付：<text class="cost">￥{{order.totalMoney / 100}}</text></view>
+
+            <button class="callBtn"
+                    data-phone="{{order.shop.phone}}" catchtap="callShopOwen">
+                联系商家
+            </button>
         </view>
     </view>
 
     <view class="order-goods">
-        <view class="h">
-            <view class="label">商品信息</view>
+        <navigator class="h" url="/pages/shop/shop?id={{order.shop.id}}">
+            <view class="label">{{order.shop.name}}</view>
             <view class="status">{{order.status}}</view>
-        </view>
+        </navigator>
         <view class="goods">
             <view class="item"
                   wx:for="{{order.freshList}}" wx:key="id" wx:for-item="fresh">

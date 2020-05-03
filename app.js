@@ -6,10 +6,5 @@ App({
     // host: 'http://xdc.myds.me:9080/api/wx',
     // host: 'https://panbyte.cn:9443/api/wx',
     userInfo: wx.getStorageSync("me")
-  },
-  onLaunch(options) {
-    // wx.setEnableDebug({
-    //   enableDebug: true
-    // })
   }
 })
