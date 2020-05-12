@@ -24,10 +24,6 @@ Page({
     totalMoney: 0
   },
 
-  onUnload() {
-    this.saveLocalData()
-  },
-
   goOrder() {
     // 将目前的数据保存到本地，防止用户没登陆，就直接下单
     this.saveLocalData()
@@ -57,19 +53,19 @@ Page({
   saveLocalData() {
     // 如果内存中还有商店信息的，说明可以执行保存
     if (this.data.shop) {
-      // 设置有效期为30分钟
+      // 设置有效期为60秒
       const timestamp = Date.parse(new Date().toDateString())
-      const expiration = timestamp + 1800000
+      const expiration = timestamp + 60000
 
-      wx.setStorageSync(`shopData${this.data.shop.id}`, JSON.stringify({
+      wx.setStorageSync(`shopData${this.data.shop.id}`, {
         ...this.data,
         expiration
-      }))
+      })
     }
   },
 
   readLocalData(shopId) {
-    const shopData = JSON.parse(wx.getStorageSync(`shopData${shopId}`))
+    const shopData = wx.getStorageSync(`shopData${shopId}`)
     this.setData({
       ...shopData
     })
@@ -208,8 +204,10 @@ Page({
     if (shopData !== "") {
       const timestamp = Date.parse(new Date().toDateString())
 
-      if (timestamp < JSON.parse(shopData).expiration) {
-        this.readLocalData(shopId)
+      if (timestamp < shopData.expiration) {
+        this.setData({
+          ...shopData
+        })
 
         return
       }

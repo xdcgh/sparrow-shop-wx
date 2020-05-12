@@ -40,11 +40,16 @@ Page({
         orderList: JSON.parse(response.data)["data"]
       })
     })
+
+    wx.stopPullDownRefresh()
   },
 
   callShopOwen(event) {
     wx.makePhoneCall({
       phoneNumber: event.target.dataset.phone
     })
+  },
+  onPullDownRefresh() {
+    this.onShow()
   }
 })

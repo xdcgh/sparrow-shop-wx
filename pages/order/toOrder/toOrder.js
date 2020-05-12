@@ -71,7 +71,7 @@ Page({
   },
 
   readLocalData(shopId) {
-    const shopData = JSON.parse(wx.getStorageSync(`shopData${shopId}`))
+    const shopData = wx.getStorageSync(`shopData${shopId}`)
     this.setData({
       shop: shopData.shop,
       totalMoney: shopData.totalMoney,
