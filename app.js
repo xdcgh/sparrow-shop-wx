@@ -6,6 +6,6 @@ App({
     // host: 'http://xdc.myds.me:9080/api/wx',
     host: 'https://panbyte.cn:9443/api/wx',
     userInfo: wx.getStorageSync("me"),
-    version: "1.3.3"
+    version: "1.4.0"
   }
 })

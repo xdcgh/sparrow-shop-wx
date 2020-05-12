@@ -33,6 +33,10 @@
                             wx:if="{{order.status === '待配送'}}">申请退款
                     </button>
                     <button class="btn callBtn"
+                            data-order-id="{{order.id}}" catchtap="confirmOrder"
+                            wx:elif="{{order.status === '已送达'}}">确认收货
+                    </button>
+                    <button class="btn callBtn"
                             data-phone="{{order.shop.phone}}" catchtap="callShopOwen"
                             wx:else>联系商家
                     </button>

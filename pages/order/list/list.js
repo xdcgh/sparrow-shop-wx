@@ -51,5 +51,32 @@ Page({
   },
   onPullDownRefresh() {
     this.onShow()
+  },
+  confirmOrder(event) {
+    wx.showModal({
+      title: '提示',
+      content: '确定收货吗？',
+      success: (res) => {
+        if (res.confirm) {
+
+          http.post("/order/update",{
+            id: event.target.dataset.orderId,
+            status: "已完成"
+          })
+
+          wx.showToast({
+            title: '订单已确认！',
+            icon: 'success',
+            duration: 1500,
+
+            complete: () => {
+              setTimeout(() => {
+                this.onShow()
+              }, 1500)
+            }
+          })
+        }
+      }
+    })
   }
 })
